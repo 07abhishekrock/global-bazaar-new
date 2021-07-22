@@ -1,0 +1,66 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald:200,300,regular,500,600,700);
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic);
+@import url(https://fonts.googleapis.com/css?family=Rubik:300,regular,500,600,700,800,900,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+
+
+$heading_font : 'Oswald' , 'Arial' , system-ui , sans-serif;
+$text_font : 'Rubik' , 'Arial Narrow' , system-ui , sans-serif;
+
+$black_color : #292929;
+$primary_color : #232F3E;
+$secondary_color : #FF3C20;
+$lightgray_color : #f7f7f7;
+$gray_color : #f2f2f2;
+
+@mixin backgroundImage($size , $position , $repeat){
+    background-size:$size;
+    background-position:$position;
+    background-repeat:$repeat;
+}
+
+@mixin flexBox($align_items , $justify_content){
+    display:flex;
+    align-items:$align_items;
+    justify-content:$justify_content;
+}
+
+@mixin comboBoxStyles($width : 180px){
+    position:relative;
+    font-family:$text_font;
+    &[visible="1"]{
+        &>ul{
+            opacity:1;
+            pointer-events:all;
+        }
+        &>span{
+            &>svg{
+                transform:rotateZ(180deg);
+            }
+        }
+    }
+    &>span{
+        width:$width;
+        @include flexBox(center , space-between);
+        flex-shrink:0;
+        &>svg{
+            margin-left:1em;
+            display:inline-block;
+        }
+    }
+    &>ul{
+        position:absolute;
+        width:100%;
+        top:100%;
+        margin-top:1em;
+        left:0px;
+        padding-left:0px;
+        list-style:none;
+        opacity:0;
+        pointer-events:none;
+        display:flex;
+        flex-flow:column;
+        &>li{
+            padding:0.5em 0px;
+        }
+    }
+}

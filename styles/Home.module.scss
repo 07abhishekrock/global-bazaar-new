@@ -1,0 +1,22 @@
+@use './variables' as variables;
+div.carousel-image{
+  width:100%;
+  height:400px;
+  @include variables.backgroundImage(cover , center , no-repeat);
+}
+
+div.image-with-text{
+  font-family:variables.$text_font;
+  &>img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+    border-radius:0.3em;
+  }
+  &>span{
+    display:block;
+    margin-top:0.5em;
+    text-align:center;
+    font-size:1.1em;
+  }
+}

@@ -1,0 +1,53 @@
+@use './variables' as variables;
+
+
+span.invisible-block{
+    position:absolute;
+    height:calc(100% + 1em);
+    top:0px;
+    width:100%;
+}
+.hover-box{
+    margin-top:1em;
+}
+
+div.carousel-wrapper{
+    position:relative;
+    &>span{
+        z-index:11000;
+        font-size:3em;
+        position:absolute;
+        top:50%;
+        transform:translateY(-50%);
+        opacity:0.8;
+        color:white;
+        &.left{
+            left:0.5em;
+        }
+        &.right{
+            right:0.5em;
+        }
+    }
+    &>h2{
+        font-family:variables.$text_font;
+        color:variables.$primary_color;
+        position:relative;
+        padding-bottom:0.5em;
+        margin-bottom:1.3em;
+        width:fit-content;
+        &::after{
+            position:absolute;
+            width:120%;
+            height:2px;
+            background-color:variables.$primary_color;
+            border-radius:2em;
+            content:"";
+            bottom:0px;
+            left:0px;
+        }
+    }
+}
+
+div.category-carousel{
+    height:auto;
+}
