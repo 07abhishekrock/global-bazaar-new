@@ -1,6 +1,10 @@
+import { faClock } from '@fortawesome/free-regular-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Head from 'next/head'
 import Image from 'next/image'
 import Carousel, { CarouselMultipleSlidesOnOnePage } from '../components/Carousel'
+import DesignerHeading from '../components/DesignerHeading'
+import GridWithHighlight from '../components/GridWithHighlight'
 import Seperator from '../components/Seperator'
 import styles from '../styles/Home.module.scss'
 
@@ -60,7 +64,6 @@ export default function Home() {
         }
       }
     }  
-    
     >
       {carouselImages.map((carousel_unit , index)=>{
         return <div key={index} className={styles['image-with-text']}>
@@ -69,6 +72,12 @@ export default function Home() {
         </div>
       })}
     </CarouselMultipleSlidesOnOnePage>
+    <GridWithHighlight>
+      <div>
+        <DesignerHeading>Daily Trends</DesignerHeading>
+        <span><FontAwesomeIcon icon={faClock}></FontAwesomeIcon>23:00:59</span>
+      </div>
+    </GridWithHighlight>
     </>
   )
 }
