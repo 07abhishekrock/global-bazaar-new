@@ -1,5 +1,5 @@
 import styles from '../styles/misc.module.scss';
-import Product from './Product';
+import Product, { LoadMoreBlock } from './Product';
 
 const productData = {
     productName : 'Designer Bag',
@@ -24,6 +24,7 @@ const GridWithHighlight = (props)=>{
                     <Product {...productData}/>
                     <Product {...productData}/>
                     <Product {...productData}/>
+                    <LoadMoreBlock text={'View All Items'}/>
                 </div>
             </div>
         </div>

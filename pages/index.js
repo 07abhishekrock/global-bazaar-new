@@ -2,9 +2,11 @@ import { faClock } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Head from 'next/head'
 import Image from 'next/image'
+import Product from '../components/Product';
 import Carousel, { CarouselMultipleSlidesOnOnePage } from '../components/Carousel'
 import DesignerHeading from '../components/DesignerHeading'
 import GridWithHighlight from '../components/GridWithHighlight'
+import Timer, { FlexWrapper } from '../components/MiscComponents'
 import Seperator from '../components/Seperator'
 import styles from '../styles/Home.module.scss'
 
@@ -31,6 +33,15 @@ const carouselImages = [
   }
 
 ]
+
+const productData = {
+  productName : 'Designer Bag',
+  oldPrice : 1000,
+  newPrice : 850,
+  currency : 'Rs',
+  productId : '1000',
+  imageLink : 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1049&q=80'
+}
 
 export default function Home() {
   return (
@@ -73,11 +84,38 @@ export default function Home() {
       })}
     </CarouselMultipleSlidesOnOnePage>
     <GridWithHighlight>
-      <div>
+      <FlexWrapper align="center" justify="space-between">
         <DesignerHeading>Daily Trends</DesignerHeading>
-        <span><FontAwesomeIcon icon={faClock}></FontAwesomeIcon>23:00:59</span>
-      </div>
+        <Timer></Timer>
+      </FlexWrapper>
+      <Seperator height={"1em"}/>
     </GridWithHighlight>
+    <CarouselMultipleSlidesOnOnePage
+      heading={"Trending Items"}
+      padding={'1em'}
+      breakpoints = {{
+      "@0.00": {
+          "slidesPerView": 1,
+          "spaceBetween": 10
+      },
+      "@0.75": {
+          "slidesPerView": 2,
+          "spaceBetween": 20
+      },
+      "@1.00": {
+          "slidesPerView": 3,
+          "spaceBetween": 40
+      },
+      "@1.50": {
+          "slidesPerView": 5,
+          "spaceBetween": 50
+        }
+      }
+    }  
+    >
+      <Product {...productData}/>
+      <Product {...productData}/>
+    </CarouselMultipleSlidesOnOnePage>
     </>
   )
 }

@@ -120,3 +120,21 @@ h2.designer-heading{
         left:0px;
     }
 }
+
+div.timer-flex{
+    display:flex;
+    align-items:center;
+    padding:0.5em;
+    border-radius:0.3em;
+    box-shadow:0px 0px 20px 5px rgba(0,0,0,0.1);
+    font-size:1.5em;
+    &>svg{
+        margin-right:0.5em;
+        color:variables.$secondary_color;
+    }
+    color:variables.$primary_color;
+    font-weight:550;
+    & span.time-seperator{
+        margin:0px 0.1em;
+    }
+}
