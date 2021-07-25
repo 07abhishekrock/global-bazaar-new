@@ -3,12 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Head from 'next/head'
 import Image from 'next/image'
 import Product from '../components/Product';
-import Carousel, { CarouselMultipleSlidesOnOnePage } from '../components/Carousel'
+import Carousel, { CarouselMultipleSlidesNonReact, CarouselMultipleSlidesOnOnePage } from '../components/Carousel'
 import DesignerHeading from '../components/DesignerHeading'
 import GridWithHighlight from '../components/GridWithHighlight'
-import Timer, { FlexWrapper } from '../components/MiscComponents'
+import Timer, { ButtonWithBoxShadow, FlexWrapper } from '../components/MiscComponents'
 import Seperator from '../components/Seperator'
 import styles from '../styles/Home.module.scss'
+import misc_styles from '../styles/misc.module.scss';
+import constants from '../utils/constants';
 
 const carouselImages = [
   {
@@ -53,12 +55,12 @@ export default function Home() {
       })}
     </Carousel>
     <Seperator height={"2em"}/>
-    <CarouselMultipleSlidesOnOnePage 
-      heading={"Shop By Categories"}
+    <CarouselMultipleSlidesNonReact
+    heading={"Shop By Categories"}
       padding={'1em'}
       breakpoints = {{
       "@0.00": {
-          "slidesPerView": 1,
+          "slidesPerView": 2,
           "spaceBetween": 10
       },
       "@0.75": {
@@ -66,30 +68,34 @@ export default function Home() {
           "spaceBetween": 20
       },
       "@1.00": {
-          "slidesPerView": 5,
+          "slidesPerView": 3,
           "spaceBetween": 40
       },
       "@1.50": {
-          "slidesPerView": 6,
+          "slidesPerView": 5,
           "spaceBetween": 50
         }
       }
     }  
     >
       {carouselImages.map((carousel_unit , index)=>{
-        return <div key={index} className={styles['image-with-text']}>
+      return <div key={index} className={styles['image-with-text']}>
           <img src={carousel_unit.imageLink}/>
           <span>{carousel_unit.text}</span>
         </div>
       })}
-    </CarouselMultipleSlidesOnOnePage>
+    </CarouselMultipleSlidesNonReact>
+
     <GridWithHighlight>
-      <FlexWrapper align="center" justify="space-between">
+      <div className={styles['heading-with-timer']}>
         <DesignerHeading>Daily Trends</DesignerHeading>
         <Timer></Timer>
-      </FlexWrapper>
+      </div>
       <Seperator height={"1em"}/>
     </GridWithHighlight>
+
+
+
     <CarouselMultipleSlidesOnOnePage
       heading={"Trending Items"}
       padding={'1em'}
@@ -98,7 +104,7 @@ export default function Home() {
           "slidesPerView": 1,
           "spaceBetween": 10
       },
-      "@0.75": {
+      "@0.65": {
           "slidesPerView": 2,
           "spaceBetween": 20
       },

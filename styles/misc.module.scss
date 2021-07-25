@@ -13,6 +13,20 @@ span.invisible-block{
 
 div.carousel-wrapper{
     position:relative;
+    &.swiper-grid{
+        &>div>div{
+            @media screen and (max-width:500px){
+                display:grid;
+                grid-template-columns: repeat(2 , 1fr);
+                grid-gap:1em;
+            }
+        }
+        &>span{
+            @media screen and (max-width:500px) {
+                display: none !important;;
+            }
+        }
+    }
     &>span{
         z-index:11000;
         font-size:3em;
@@ -87,9 +101,10 @@ div.grid-with-highlight{
         display:grid;
         grid-template-columns:repeat(3 , 1fr);
         grid-gap:1.5em 1em;
-        padding:0px 2em;
+        padding-left:2em;
         @media only screen and (max-width:1270px){
             grid-template-columns:repeat(2 , 1fr);
+            padding:0px;
         }
         @media only screen and (max-width:500px){
             grid-template-columns:repeat(1 , 1fr);
@@ -119,6 +134,15 @@ h2.designer-heading{
         bottom:0px;
         left:0px;
     }
+    @media screen and (max-width:520px) {
+        width:auto;
+        text-align:center;
+        &::after{
+            width:100%;
+            left:50%;
+            transform:translateX(-50%);
+        }
+    }
 }
 
 div.timer-flex{
@@ -138,3 +162,12 @@ div.timer-flex{
         margin:0px 0.1em;
     }
 }
+
+.fancy-btn{
+    width:fit-content;
+    margin-left:auto;
+    font-size:1.5em;
+    padding:0.3em 1em;
+    font-weight:bold;
+}
+

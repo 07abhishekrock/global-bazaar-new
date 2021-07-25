@@ -23,3 +23,22 @@ div.image-with-text{
     font-size:1.1em;
   }
 }
+
+div.heading-with-timer{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  @media screen and  (max-width:520px) {
+    flex-flow: column;
+    align-items:center; 
+    justify-content: center;
+    &>h2{
+      width:100%;
+      margin-bottom:1em
+    }
+    &>div{
+      font-size:1.6em;
+      margin-bottom:1em;
+    }
+  }
+}

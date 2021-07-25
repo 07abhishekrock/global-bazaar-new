@@ -14,6 +14,7 @@ nav.navbar{
     }
 
     &>div.nav-icon-links{
+        margin-right:2em;
         & svg{
             color:variables.$black_color;
             font-size:1.4em;
@@ -24,21 +25,39 @@ nav.navbar{
             & svg{
                 color:variables.$secondary_color;
             }
-            &>div.cart-hover{
+            &>div.option-hover{
                 position:absolute;
                 top:100%;
                 background-color:white;
-                box-shadow:0px 0px 20px 3px rgba(0,0,0,0.05);
+                box-shadow:0px 0px 20px 3px rgba(0,0,0,0.08);
                 padding:0.5em;
                 border-radius:0.3em;
                 left:50%;
                 transform:translateX(-50%);
-                width:100px;
+                width:130px;
                 font-family: variables.$text_font;
                 text-align:center;
-                &>button{
-                    display:block;
-                    padding:0.3em 0.5em;
+                &.list-option{
+                    padding:0px;
+                    overflow:hidden;
+                    &>ul{
+                        margin:0px;
+                        padding-left:0px;
+                        text-align:center;
+                        list-style:none;
+                        font-size:0.85em;
+                        cursor:pointer;
+                        &>li{
+                            padding:0.5em 0px;
+                            &:hover{
+                                background-color:variables.$lightgray_color;
+                            }
+                        }
+                    }
+                }
+                    &>button{
+                        display:block;
+                        padding:0.3em 0.5em;
                     color:white;
                     background-color:variables.$secondary_color;
                     font-weight:550;
@@ -47,11 +66,12 @@ nav.navbar{
                     margin:0 auto;
                     margin-top:1em;
                     font-family: inherit;
+                    width:100%;
                 }
             }
         }
         &>*{
-            margin:0px 0.3em;
+            margin:0px 0.5em;
         }
     }
 

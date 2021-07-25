@@ -21,7 +21,7 @@ const HoverBoxWithIcon = (props)=>{
                 toggle_visible(true);
             }} onMouseLeave={()=>{
                 toggle_visible(false);
-            }} style={{display: visible ? 'initial' : 'none'}} className={props.customClassName.concat(' ' , styles['hover-box'])}>{props.children}</div>
+            }} style={{display: visible ? 'initial' : 'none' }} className={styles['hover-box'].concat(' ' , props.customClassName)}>{props.children}</div>
         </div>
     )
 }

@@ -32,12 +32,28 @@ const Navbar = ()=>{
                     </div>
                 </div>
                 <div className={styles['nav-icon-links']}>
-                    <FontAwesomeIcon icon={faUserAlt}></FontAwesomeIcon>
-                    <HoverBoxWithIcon icon={faShoppingCart} customClassName={styles['cart-hover']}>
+                    <HoverBoxWithIcon icon={faUserAlt} customClassName={styles['option-hover'].concat(' ',styles['list-option'])}>
+                        <ul>
+                            <li>Your Profile</li>
+                            <li>Your Orders</li>
+                            <li>Your Cart</li>
+                            <li>Your Wishlist</li>
+                            <li>Feedback</li>
+                        </ul>
+                    </HoverBoxWithIcon>
+                    <HoverBoxWithIcon icon={faShoppingCart} customClassName={styles['option-hover']}>
                         <span>4 items in your cart</span>
                         <button>Go to Cart</button>
                     </HoverBoxWithIcon>
-                    <FontAwesomeIcon icon={faLayerGroup}></FontAwesomeIcon>
+                    <HoverBoxWithIcon icon={faLayerGroup} customClassName={styles['option-hover'].concat(' ',styles['list-option'])}>
+                        <ul>
+                            <li>Help & Support</li>
+                            <li>Advertise With Us</li>
+                            <li>Sell on Flipkart</li>
+                            <li>Admin Panel</li>
+                            <li>Other Option</li>
+                        </ul>
+                    </HoverBoxWithIcon>
                 </div>
         </nav>
     )

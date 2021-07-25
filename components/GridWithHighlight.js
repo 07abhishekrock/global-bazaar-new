@@ -24,9 +24,11 @@ const GridWithHighlight = (props)=>{
                     <Product {...productData}/>
                     <Product {...productData}/>
                     <Product {...productData}/>
-                    <LoadMoreBlock text={'View All Items'}/>
+                    <Product {...productData}/>
+                    {/* <LoadMoreBlock text={'View All Items'}/> */}
                 </div>
             </div>
+            {props.appendToEnd || null}
         </div>
     )
 }
