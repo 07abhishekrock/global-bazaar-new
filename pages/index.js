@@ -11,6 +11,7 @@ import Seperator from '../components/Seperator'
 import styles from '../styles/Home.module.scss'
 import misc_styles from '../styles/misc.module.scss';
 import constants from '../utils/constants';
+import Footer from '../components/Footer';
 
 const carouselImages = [
   {
@@ -85,7 +86,6 @@ export default function Home() {
         </div>
       })}
     </CarouselMultipleSlidesNonReact>
-
     <GridWithHighlight>
       <div className={styles['heading-with-timer']}>
         <DesignerHeading>Daily Trends</DesignerHeading>
@@ -93,9 +93,6 @@ export default function Home() {
       </div>
       <Seperator height={"1em"}/>
     </GridWithHighlight>
-
-
-
     <CarouselMultipleSlidesOnOnePage
       heading={"Trending Items"}
       padding={'1em'}
@@ -122,6 +119,7 @@ export default function Home() {
       <Product {...productData}/>
       <Product {...productData}/>
     </CarouselMultipleSlidesOnOnePage>
+    <Footer></Footer>
     </>
   )
 }

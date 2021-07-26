@@ -6,24 +6,91 @@ nav.navbar{
     padding-top:1em;
     position:relative;
     z-index:1000000;
+    background-color:white;
+
+    &[fixed = "1"]{
+        position:fixed;
+        width:100%;
+        box-shadow:0px 3px 5px rgba(0,0,0,0.1);
+    }
 
     &>div.nav-logo{
         width:3em;
         height:3em;
         background-color:lightgray;
+        @media screen and (max-width:680px){
+            display:none;
+        }
     }
 
     &>div.nav-icon-links{
-        margin-right:2em;
+        margin-right:1em;
+        flex-shrink:0;
+        @media screen and (max-width:950px){
+            margin-right:0px;
+        }
+
+        &>div.list-box-icon{
+            position:static;
+            &.disable-on-large-screens{
+                @media screen and (min-width:951px){
+                    display:none;
+                }
+            }
+            &>i{
+                position:relative;
+                z-index:10;
+            }
+            &>div.list-inner{
+                position:absolute;
+                transition:transform 0.3s ease-out;
+                background-color:white;
+                color:variables.$primary_color;
+                z-index:9;
+                top:0px;
+                left:0px;
+                width:100%;
+                height:auto;
+                padding:1em 2em;
+                &>h3{
+                    display:flex;
+                    font-size:1.3em;
+                    align-items:center;
+                    &>svg{
+                        font-size:0.8em;
+                        color:variables.$secondary_color;
+                    }
+                    margin-bottom:0.5em;
+                }
+                &>ul{
+                    font-size: 0.9em;;
+                    display:grid;
+                    padding-left:0.5em;
+                    grid-gap:0.3em 0px;
+                }
+            }
+        }
+
+
         & svg{
             color:variables.$black_color;
             font-size:1.4em;
+        }
+        & i.notif-bubble{
+            position:absolute;
+            background-color:variables.$secondary_color;
+            width:0.5em;
+            height:0.5em;
+            border-radius:50%;
+            right:-0.3em;
+            top:-0.3em;
         }
         &>div{
             display:inline-block;
             position:relative;
             & svg{
-                color:variables.$secondary_color;
+                color:variables.$primary_color;
+                margin-right:0.2em;
             }
             &>div.option-hover{
                 position:absolute;
@@ -50,7 +117,7 @@ nav.navbar{
                         &>li{
                             padding:0.5em 0px;
                             &:hover{
-                                background-color:variables.$lightgray_color;
+                                background-color:variables.$gray_color;
                             }
                         }
                     }
@@ -58,15 +125,23 @@ nav.navbar{
                     &>button{
                         display:block;
                         padding:0.3em 0.5em;
-                    color:white;
-                    background-color:variables.$secondary_color;
-                    font-weight:550;
-                    border:0px;
-                    border-radius:inherit;
-                    margin:0 auto;
-                    margin-top:1em;
-                    font-family: inherit;
-                    width:100%;
+                        color:white;
+                        background-color:variables.$secondary_color;
+                        font-weight:550;
+                        border:0px;
+                        border-radius:inherit;
+                        margin:0 auto;
+                        margin-top:1em;
+                        font-family: inherit;
+                        width:100%;
+                }
+
+                
+
+            }
+            &.small-screen-invisible{
+                @media screen and (max-width:950px){
+                    display:none;
                 }
             }
         }
@@ -104,13 +179,24 @@ nav.navbar{
                     }
                 }
             }
+
+            @media screen and (max-width:780px){
+                display:none;
+            }
         }
         &>div.search-field{
             @include variables.flexBox(center , space-between);
             position:relative;
+            width:400px;
+            flex-grow:1;
             border-radius: 0.3em;
             border:2px solid variables.$gray_color;
+            display:flex;
             box-sizing: border-box;
+            @media screen and (max-width:900px){
+                width:300px;
+            }
+
             &:focus-within{
                 box-shadow:0px 0px 20px 5px rgba(0,0,0,0.05);
                 outline:none;
@@ -122,7 +208,8 @@ nav.navbar{
                 font-family:variables.$text_font;
                 font-size:1em;
                 border-radius:inherit;
-                width:350px;
+                flex-grow:1;
+                // width:350px;
                 display:inline-block;
             }
             &>i.search-icon{
@@ -156,7 +243,41 @@ nav.navbar{
                     opacity:1;
                     pointer-events:all;
                 }
+                &>div.inline-categories{
+                    display:flex;
+                    flex-wrap:wrap;
+                    margin-bottom:1em;
+                    &>span{
+                        margin:0.3em 0px;
+                        margin-right:0.5em;
+                        padding:0.3em 0.5em;
+                        border-radius:2em;
+                        border:2px solid variables.$primary_color;
+                        color:variables.$primary_color;
+                        font-size:0.8em;
+                        font-weight:bold;
+                        &[selected="1"]{
+                            color:white;
+                            background-color:variables.$primary_color;
+                        }
+                    }
+
+                    @media screen and (min-width:681px){
+                        display:none;
+                    }
+                }
             }
         }
+        @media screen and (max-width:780px){
+            max-width:400px;
+            width:80%;
+        }
+    }
+
+    @media screen and (max-width:680px){
+        justify-content:center;
+        gap:1em;
+        flex-flow:column-reverse;
+        align-items:center;
     }
 }

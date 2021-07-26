@@ -77,11 +77,15 @@ const CarouselMultipleSlidesNonReact = (props)=>{
     const rightBtn = useRef(null);
     const swiper_wrapper = useRef(null);
     const swiper = useRef(null);
+    const swiper_parent = useRef(null);
 
     function checkForMedia(matches_bool){
         if(matches_bool){
             if(swiper.current.destroy){
                 swiper.current.destroy(true , true);
+                Array.from(swiper_parent.current.children).forEach((child)=>{
+                    child.setAttribute('style','');
+                })
             }
         }
         else{
@@ -110,7 +114,7 @@ const CarouselMultipleSlidesNonReact = (props)=>{
     return <div style={{padding : props.padding}} className={styles['carousel-wrapper'].concat(' ' , styles['category-carousel'] , ' ' , styles['swiper-grid'])}>
     <DesignerHeading>{props.heading}</DesignerHeading>
     <div className={'swiper-container'} ref={swiper_wrapper}>
-        <div className={'swiper-wrapper'} >
+        <div className={'swiper-wrapper'} ref={swiper_parent}>
                 {Array.from(props.children).map((child , index)=>{
                     return <div key={index} className={'swiper-slide'}>{child}</div>
                 })} 

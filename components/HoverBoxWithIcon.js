@@ -7,7 +7,8 @@ const HoverBoxWithIcon = (props)=>{
     let [visible , toggle_visible] = useState(false);
 
     return (
-        <div style={{position:'relative'}}>
+        <div className={props.parentClassName} style={{position:'relative'}}>
+            {props.appendToTop || null}
             <span 
                 onMouseEnter={()=>{
                     toggle_visible(true);
