@@ -1,17 +1,12 @@
-import { faClock } from '@fortawesome/free-regular-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Head from 'next/head'
 import Image from 'next/image'
 import Product from '../components/Product';
 import Carousel, { CarouselMultipleSlidesNonReact, CarouselMultipleSlidesOnOnePage } from '../components/Carousel'
 import DesignerHeading from '../components/DesignerHeading'
 import GridWithHighlight from '../components/GridWithHighlight'
-import Timer, { ButtonWithBoxShadow, FlexWrapper } from '../components/MiscComponents'
+import Timer from '../components/MiscComponents'
 import Seperator from '../components/Seperator'
 import styles from '../styles/Home.module.scss'
-import misc_styles from '../styles/misc.module.scss';
-import constants from '../utils/constants';
-import Footer from '../components/Footer';
 
 const carouselImages = [
   {
@@ -42,7 +37,7 @@ const productData = {
   oldPrice : 1000,
   newPrice : 850,
   currency : 'Rs',
-  productId : '1000',
+  id : '1000',
   imageLink : 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1049&q=80'
 }
 
@@ -119,7 +114,6 @@ export default function Home() {
       <Product {...productData}/>
       <Product {...productData}/>
     </CarouselMultipleSlidesOnOnePage>
-    <Footer></Footer>
     </>
   )
 }

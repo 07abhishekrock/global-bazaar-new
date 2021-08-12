@@ -1,6 +1,10 @@
 import { faCartPlus, faExternalLinkAlt, faExternalLinkSquareAlt, faHeart, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from '../styles/product.module.scss';
+import { useDispatch } from 'react-redux';
+import {
+    addItemsToLocalStorage
+} from '../features/cart/cartSlice';
 
 
 /*
@@ -18,11 +22,39 @@ typical product structure
 */
 
 const Product = (props)=>{
+
+    const dispatch = useDispatch();
     return (
         <div className={styles['product']}>
             <div className={styles['product-options']}>
-                <i><FontAwesomeIcon icon={faHeart}></FontAwesomeIcon></i>
-                <i><FontAwesomeIcon icon={faCartPlus}></FontAwesomeIcon></i>
+                <i onClick={()=>{
+                    dispatch(addItemsToLocalStorage({
+                        id : props.id,
+                        newPrice : props.newPrice,
+                        oldPrice : props.oldPrice,
+                        productName : props.productName,
+                        TimeLeftOnPrice : props.TimeLeftOnPrice || 0,
+                        imageLink : props.imageLink ,
+                        viewLink : props.viewLink || '#no-link',
+                        maxQty : props.maxQty || 100,
+                        qty : 1,
+                        type : 'wishlist'
+                    }));                   
+                }}><FontAwesomeIcon icon={faHeart}></FontAwesomeIcon></i>
+                <i onClick={()=>{
+                    dispatch(addItemsToLocalStorage({
+                        id : props.id,
+                        newPrice : props.newPrice,
+                        oldPrice : props.oldPrice,
+                        productName : props.productName,
+                        TimeLeftOnPrice : props.TimeLeftOnPrice || 0,
+                        imageLink : props.imageLink ,
+                        viewLink : props.viewLink || '#no-link',
+                        maxQty : props.maxQty || 100,
+                        qty : 1,
+                        type : 'cart'
+                    }));
+                }}><FontAwesomeIcon icon={faCartPlus}></FontAwesomeIcon></i>
             </div>
             <img src={props.imageLink}/>
             <div className={styles['product-info']}>

@@ -7,39 +7,51 @@ import ListBox from './ListBox';
 import React, { useEffect , useRef , useState } from 'react';
 import HoverBoxWithIcon from './HoverBoxWithIcon';
 import ListBoxIcon from './ListBoxIcon';
+import { populateCartInitial, selectItems } from '../features/cart/cartSlice';
+import { useSelector , useDispatch } from 'react-redux';
 
 
 const Navbar = ()=>{
 
     let intersection_ref = useRef(null);
-    let [fixed , set_fixed] = useState(0);
     let parent = useRef(null);
+    let navbar = useRef(null);
+    const cartItems = useSelector(selectItems);
+    const dispatch = useDispatch();
 
     useEffect(()=>{
         let new_intersection_observer = new IntersectionObserver((entries)=>{
             let entry = entries[0];
-            console.log(entry.isIntersecting , entry.intersectionRatio);
+            console.log(entry.intersectionRatio , entry.isIntersecting);
             if(entry.isIntersecting){
-                set_fixed(0);
+                navbar.current.setAttribute('fixed',0);
             }
             else{
-                set_fixed(1);
+                navbar.current.setAttribute('fixed',1);
             }
         },{
             root : null,
-            threshold : [0 , 0.1 , 0.2 , 0.3 , 0.4 , 0.5 , 0.6 , 0.7 , 0.8 , 0.9 , 1]
+            threshold : [0 , 0.1 , 0.2 , 0.3 , 0.4 , 0.5 , 0.6, 0.7, 0.8 , 0.9 , 1]
         })
 
         new_intersection_observer.observe(parent.current);
         intersection_ref.current = new_intersection_observer;
+
+
+        //initialise cart
+        dispatch(populateCartInitial());
+        navbar.current.setAttribute('fixed',0);
+        return ()=>{
+            new_intersection_observer.disconnect();
+        }
 
     },[])
 
     return (
         <>
         <div ref={parent} style={{height:'0.1em'}}></div>
-        <nav className={styles['navbar']} fixed={fixed} style={{transform:'translateY(-0.1em)'}}>
-            <div className={styles['nav-logo']}></div>
+        <nav className={styles['navbar']} style={{transform:'translateY(-0.1em)'}} ref={navbar}>
+            <div className={styles['nav-logo'].concat(' ' , 'logo-with-image')}></div>
             <div className={styles['search-bar']}>
                 <ComboBox customClassName={styles['category-combo-box']}>
                     <>List Item 1</>
@@ -79,7 +91,7 @@ const Navbar = ()=>{
                         </ul>
                     </HoverBoxWithIcon>
                     <HoverBoxWithIcon appendToTop={<i className={styles['notif-bubble']}></i>} icon={faShoppingCart} customClassName={styles['option-hover']}>
-                        <span>4 items in your cart</span>
+                        <span>{cartItems.filter(item => item.type === 'cart').length} items in your cart</span>
                         <button>Go to Cart</button>
                     </HoverBoxWithIcon>
                     <HoverBoxWithIcon icon={faLayerGroup} 

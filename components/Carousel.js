@@ -46,7 +46,7 @@ const CarouselMultipleSlidesOnOnePage = (props)=>{
     const rightBtn = useRef(null);
 
     return <div style={{padding : props.padding}} className={styles['carousel-wrapper'].concat(' ' , styles['category-carousel'])}>
-    <DesignerHeading>{props.heading}</DesignerHeading>
+    <DesignerHeading underline={props.underline}>{props.heading}</DesignerHeading>
     <SwiperReact 
         slidesPerView={1} 
         spaceBetween={10} 
@@ -64,6 +64,9 @@ const CarouselMultipleSlidesOnOnePage = (props)=>{
         }}
     >
         {Array.from(props.children).map((child , index)=>{
+            if(child === null){
+                return null;
+            }
             return <SwiperSlide key={index}>{child}</SwiperSlide>
         })} 
     </SwiperReact>
